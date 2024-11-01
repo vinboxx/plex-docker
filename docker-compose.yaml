@@ -11,6 +11,7 @@ services:
       - TZ=${TZ}  # Time zone
       - PLEX_UID=${PLEX_UID}  # User ID (for permissions)
       - PLEX_GID=${PLEX_GID}  # Group ID (for permissions)
+    network_mode: host
     volumes:
       - ${PLEX_CONFIG_PATH}:/config  # Path for Plex configuration
       - ${PLEX_TRANSCODE_PATH}:/transcode  # Path for transcoding
@@ -18,19 +19,3 @@ services:
     devices:
       - /dev/bus/usb:/dev/bus/usb
     restart: unless-stopped
-    ports:
-      - "32400:32400"  # Web interface
-      - "3005:3005"    # Plex HTPC
-      - "8324:8324"    # Plex DLNA
-      - "32469:32469"  # Plex DLNA Discovery
-      - "32410:32410/udp"  # GDM network discovery
-      - "32412:32412/udp"  # GDM network discovery
-      - "32413:32413/udp"  # GDM network discovery
-      - "32414:32414/udp"  # GDM network discovery
-      - "1900:1900/udp"    # SSDP
-      - "32443:32443"      # Secure connections
-      - "32400:32400/udp"  # Plex media server UDP
-
-networks:
-  default:
-    driver: bridge

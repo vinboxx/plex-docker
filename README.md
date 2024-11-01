@@ -38,3 +38,6 @@ To update all images, run:
 docker compose pull
 docker compose up -d
 ```
+
+## Troubleshooting
+- If you cannot access the Plex web interface, use bridge networking instead of host networking in the `docker-compose.yml` file. Also add ports `32400:32400` to the `ports` section. After setup successfully, you can revert back to host networking so that Plex app can discover the server and play media directly.
